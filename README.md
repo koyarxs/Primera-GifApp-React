@@ -1,4 +1,4 @@
-# first commit
+# Primera Aplicacion de React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
