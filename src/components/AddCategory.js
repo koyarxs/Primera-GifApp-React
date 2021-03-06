@@ -1,35 +1,23 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types';
 
-export const AddCategory = ({ setCategories }) => {
+const AddCategory = ({ setCategories }) => {
+  const input = useRef();
 
-    const [inputValue, setInputValue] = useState('');
+  const onSubmit = e => {
+    e.preventDefault();
+    setCategories([input.current.value]);
+  }
 
-    const primeragif = ( e ) => {
-        setInputValue( e.target.value );
-    }
-
-    const botonEnter = (e) => {
-        e.preventDefault();
-
-        if ( inputValue.trim().length > 2 ) {
-            setCategories( cats => [ inputValue, ...cats, ] );
-            setInputValue('');
-        }
-
-    }
-
-    return (
-        <form onSubmit= {botonEnter}>
-            <input
-                type="text"
-                value={ inputValue }
-                onChange={ primeragif }
-            />
-        </form>
-    )
-}
+  return (
+    <form onSubmit={onSubmit}>
+      <input ref={input} type="text" />
+    </form>
+  )
+};
 
 AddCategory.propTypes = {
-    setCategories: PropTypes.func.isRequired
-}
+  setCategories: PropTypes.func.isRequired
+};
+
+export default AddCategory;

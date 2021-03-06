@@ -1,31 +1,30 @@
 
 import React, { useState } from 'react'
-import { AddCategory } from './components/AddCategory';
-import { GifGrid } from './components/GifGrid';
+import AddCategory from './components/AddCategory';
+import GifGrid from './components/GifGrid';
 
-export const GifExpertApp = () => {
+const GifExpertApp = () => {
+  const [categories, setCategories] = useState(['One Piece']);
 
+  return (
+    <div>
+      <h2 className="animate__animated animate__bounceIn">Buscador de Gif - 2021</h2>
 
-    const [categories, setCategories] = useState(['One Piece']);
+      <AddCategory setCategories={setCategories} />
+      <hr/>
 
-    return (
-        <>
-            <h2 className="animate__animated animate__bounceIn">Buscador de Gif - 2021</h2>
-            <AddCategory setCategories={ setCategories } />
-            <hr/>
-
-            <ol>
-                {
-                    categories.map( category  => (
-                        <GifGrid 
-                            key={ category }
-                            category={ category }
-                        />
-                    ))
-                }
-                
-            </ol>
-
-        </>
-    )
+      <ol>
+        { 
+          categories.map((category, index) => 
+            <GifGrid 
+              key={`category-${index}`} 
+              category={category} 
+            />
+          ) 
+        }
+      </ol>
+    </div>
+  )
 }
+
+export default GifExpertApp;
